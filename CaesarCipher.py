@@ -13,7 +13,7 @@ def cipherMessage():
             shiftedMessage += " "
         else:
             newIndex = alphabets.index(letter)+shiftNumber
-            if newIndex > (len(alphabets) - alphabets.index(letter)):
+            while newIndex > (len(alphabets) - alphabets.index(letter)):
                 newIndex = newIndex - len(alphabets)
             shiftedMessage += alphabets[newIndex]
             
@@ -32,7 +32,7 @@ def decipherMessage():
             unshiftedMessage += " "
         else:
             newIndex = alphabets.index(letter) - shiftNumber
-            if newIndex > (len(alphabets) - alphabets.index(letter)):
+            while newIndex > (len(alphabets) - alphabets.index(letter)):
                 newIndex = newIndex - len(alphabets)
 
             unshiftedMessage += alphabets[newIndex]

@@ -32,12 +32,13 @@ def decipherMessage():
             unshiftedMessage += " "
         else:
             newIndex = alphabets.index(letter) - shiftNumber
-            while newIndex > (len(alphabets) - alphabets.index(letter)):
-                newIndex = newIndex - len(alphabets)
+            if shiftNumber > len(alphabets):
+                newIndex = newIndex % len(alphabets)
 
             unshiftedMessage += alphabets[newIndex]
         
     print("Your deciphered message is", unshiftedMessage)
+    
         
 
 

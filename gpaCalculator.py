@@ -17,7 +17,7 @@ def main():
     
     courseInfo = []
     
-    numberOfCourses = 6
+    numberOfCourses = int(input("How many courses are you offering? "))
     
     for i in range(numberOfCourses):
         
@@ -32,24 +32,29 @@ def main():
         
         
     
-    sum = 0
+    sumOfUnit = 0
     unitSum = 0
     
     for course in courseInfo:
-        gradePoint = course["courseUnit"] * gradeScore(course["courseGrade"])
+        if gradeScore(course["courseGrade"]) != "INVALID" and isinstance(course["courseUnit"], int) == True:
+            gradePoint = course["courseUnit"] * gradeScore(course["courseGrade"])
+            sumOfUnit = sumOfUnit + gradePoint
+            unitSum = unitSum + course["courseUnit"]
+        else:
+            print("GPA cannot be calculated. Wrong input given. Try again")
+            break
         
-        sum = sum + gradePoint
-        unitSum = unitSum + course["courseUnit"]
-        
-    gpa = sum / unitSum
-    print("These is the result for your courses: \n")
-    for course in courseInfo:
-        print(f"Course {courseInfo.index(course) + 1} :")
-        for key, value in course.items():
-            print(f"{key} : {value}")
-        print()
-        
-    print(f"Your GPA for these 6 courses is {gpa:.2f}")
+    if sumOfUnit != 0:
+        gpa = sumOfUnit / unitSum
+        print("These is the result for your courses: \n")
+        for course in courseInfo:
+            print(f"Course {courseInfo.index(course) + 1} :")
+            for key, value in course.items():
+                print(f"{key} : {value}")
+            print()
+            
+        print(f"Your GPA for these {numberOfCourses} courses is {gpa:.2f}")
+    
     
     
 main()
